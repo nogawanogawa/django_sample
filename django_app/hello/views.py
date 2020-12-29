@@ -6,7 +6,15 @@ from django.http import HttpResponse
 def index(request):
     params = {
         'title': 'Hello/Index',
-        'msg': 'パラメータを埋め込んだページです'
+        'msg': 'パラメータを埋め込んだページです',
+        'goto': 'next'
     }
     return render(request, 'hello/index.html', params)
 
+def next(request):
+    params = {
+        'title': 'Hello/Index',
+        'msg': '次のページです',
+        'goto': 'index'
+    }
+    return render(request, 'hello/index.html', params)
