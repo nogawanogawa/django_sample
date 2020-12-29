@@ -11,6 +11,16 @@ def index(request):
     }
     return render(request, 'hello/index.html', params)
 
+def form(request):
+    email = request.POST['email']
+    password = request.POST['password']
+    params = {
+        'title' : email,
+        'msg' : password,
+        'goto': 'index'
+    }
+    return render(request, 'hello/index.html', params)
+
 def next(request):
     params = {
         'title': 'Hello/Index',

@@ -10,17 +10,21 @@
     <body>
         <h1>{{title}}</h1>
         <p>{{msg}}</p>
-        
-        <button type="button" class="btn btn-primary">Primary</button>
-        <button type="button" class="btn btn-secondary">Secondary</button>
-        <button type="button" class="btn btn-success">Success</button>
-        <button type="button" class="btn btn-danger">Danger</button>
-        <button type="button" class="btn btn-warning">Warning</button>
-        <button type="button" class="btn btn-info">Info</button>
-        <button type="button" class="btn btn-light">Light</button>
-        <button type="button" class="btn btn-dark">Dark</button>
-        
-        <button type="button" class="btn btn-link">Link</button>
+        <div class="container">
+            <form action="{% url 'form' %}" method="post">
+                {% csrf_token%}
+                <div class="mb-3">
+                  <label class="form-label">Email address</label>
+                  <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Password</label>
+                  <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+
         <p><a href="{% url goto %}">{{goto}}</a></p>
     </body>
 </html>
