@@ -4,5 +4,9 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-    return render(request, 'hello/index.html')
+    params = {
+        'title': 'Hello/Index',
+        'msg': 'パラメータを埋め込んだページです'
+    }
+    return render(request, 'hello/index.html', params)
 
