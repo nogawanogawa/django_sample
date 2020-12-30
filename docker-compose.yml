@@ -6,7 +6,8 @@ services:
       - .:/app
     ports: 
       - "8000:8000"
-    tty: true
+    depends_on:
+      - "mysql"
     command: python django_app/manage.py runserver 0.0.0.0:8000
     networks:
       - net
@@ -18,7 +19,7 @@ services:
     expose:  
       - 3306
     environment:
-      MYSQL_DATABASE: keyword
+      MYSQL_DATABASE: users
       MYSQL_USER: user
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: rootpassword
