@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'hello/css/bootstrap.min.css' %}">
+        <title>{{title}}</title>
+    </head>
+    <body>
+        <h1>{{title}}</h1>
+        <div class="container">
+            <form action="{% url 'delete' id %}" method="post">
+                <div class="form-group">
+                    {% csrf_token%}
+                    {% load widget_tweaks %}
+                    <div class="row">
+                        <div class="col">
+                            <label for="inputPassword4">Name</label>
+                            {{ form.name }}
+                        </div>
+                        <div class="col">
+                            <label for="inputPassword4">Mail</label>
+                            {{ form.mail }}
+                        </div>   
+                        <div class="col">
+                            <label for="inputPassword4">Age</label>
+                            {{ form.age }}
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Delete</button>
+            </form>
+        </div>
+    </body>
+</html>

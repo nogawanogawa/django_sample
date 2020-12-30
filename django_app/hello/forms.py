@@ -1,7 +1,8 @@
 from django import forms
+from .models import Person
 
-class UserForm(forms.Form):
-    name = forms.CharField(label="name")
-    mail = forms.CharField(label="mail")
-    age = forms.IntegerField(label="age")
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = Person
+        fields = ['name', 'mail', 'age']
     

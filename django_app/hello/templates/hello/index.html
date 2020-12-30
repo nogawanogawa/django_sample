@@ -11,22 +11,52 @@
         <h1>{{title}}</h1>
         <p>{{message|safe}}</p>
         <div class="container">
-            <form action="{% url 'index' %}" method="post">
-                {% csrf_token%}
-                {% load widget_tweaks %}
-                <div class="row">
-                    <div class="col">
-                        {{form.name|add_class:"form-control"}}
-                    </div>
-                    <div class="col">
-                    {{form.mail|add_class:"form-control"}}
-                    </div>   
-                    <div class="col">
-                    {{form.age|add_class:"form-control"}}
+            <form action="{% url 'create' %}" method="post">
+                <div class="form-group">
+                    {% csrf_token%}
+                    {% load widget_tweaks %}
+                    <div class="row">
+                        <div class="col">
+                            <label for="inputPassword4">Name</label>
+                            {{form.name|add_class:"form-control"}}
+                        </div>
+                        <div class="col">
+                            <label for="inputPassword4">Mail</label>
+                        {{form.mail|add_class:"form-control"}}
+                        </div>   
+                        <div class="col">
+                            <label for="inputPassword4">Age</label>
+                        {{form.age|add_class:"form-control"}}
+                        </div>
                     </div>
                 </div>
-                <input type="submit" value="click" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary">Add</button>
             </form>
+
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Mail</th>
+                    <th scope="col">Age</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for item in data %}
+                    <tr>
+                        <th scope="row">{{item.id}}</th>
+                        <td>{{item.name}}</td>
+                        <td>{{item.mail}}</td>
+                        <td>{{item.age}}</td>
+                        <td><a href="{% url 'edit' item.id %}">Edit</a></td>
+                        <td><a href="{% url 'delete' item.id %}">Delete</a></td>
+                      </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
         </div>
     </body>
 </html>
