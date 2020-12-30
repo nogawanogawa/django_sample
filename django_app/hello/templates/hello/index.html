@@ -13,7 +13,18 @@
         <div class="container">
             <form action="{% url 'index' %}" method="post">
                 {% csrf_token%}
-                {{form}}
+                {% load widget_tweaks %}
+                <div class="row">
+                    <div class="col">
+                        {{form.name|add_class:"form-control"}}
+                    </div>
+                    <div class="col">
+                    {{form.mail|add_class:"form-control"}}
+                    </div>   
+                    <div class="col">
+                    {{form.age|add_class:"form-control"}}
+                    </div>
+                </div>
                 <input type="submit" value="click" class="btn btn-primary">
             </form>
         </div>
